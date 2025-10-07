@@ -315,7 +315,7 @@ const DrumRudimentsApp = () => {
     }
   }, [clickEnabled, getAudioContext]);
 
-  // Play audio for note - improved version with rest handling
+  // Play audio for note - improved version with rest handling and kick drum
   const playNoteSound = useCallback((hand = 'R', isRest = false) => {
     // Always play click regardless of rest or not
     playMetronomeClick();
@@ -325,55 +325,77 @@ const DrumRudimentsApp = () => {
 
     try {
       const audioContext = getAudioContext();
-
-      // Create oscillator for main tone
-      const oscillator = audioContext.createOscillator();
-      const gainNode = audioContext.createGain();
-
-      // Create noise for snare effect
-      const bufferSize = audioContext.sampleRate * 0.1;
-      const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
-      const output = buffer.getChannelData(0);
-
-      // Generate white noise
-      for (let i = 0; i < bufferSize; i++) {
-        output[i] = (Math.random() * 2 - 1) * 0.3;
-      }
-
-      const noiseSource = audioContext.createBufferSource();
-      noiseSource.buffer = buffer;
-      const noiseGain = audioContext.createGain();
-
-      // Connect nodes
-      oscillator.connect(gainNode);
-      noiseSource.connect(noiseGain);
-      gainNode.connect(audioContext.destination);
-      noiseGain.connect(audioContext.destination);
-
-      // Configure different sounds for R/L
       const now = audioContext.currentTime;
-      const baseFreq = hand === 'R' ? 200 : 160;
-      const endFreq = hand === 'R' ? 80 : 60;
 
-      oscillator.frequency.setValueAtTime(baseFreq, now);
-      oscillator.frequency.exponentialRampToValueAtTime(endFreq, now + 0.08);
+      if (hand === 'K') {
+        // Kick drum sound - deeper bass frequency
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
 
-      // Set up envelopes
-      gainNode.gain.setValueAtTime(0, now);
-      gainNode.gain.linearRampToValueAtTime(0.2, now + 0.005);
-      gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
 
-      noiseGain.gain.setValueAtTime(0, now);
-      noiseGain.gain.linearRampToValueAtTime(0.15, now + 0.005);
-      noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+        // Deep kick drum frequency
+        oscillator.frequency.setValueAtTime(80, now);
+        oscillator.frequency.exponentialRampToValueAtTime(40, now + 0.15);
+        oscillator.type = 'sine';
 
-      // Start sounds
-      oscillator.start(now);
-      noiseSource.start(now);
+        // Kick drum envelope - punchy attack, quick decay
+        gainNode.gain.setValueAtTime(0, now);
+        gainNode.gain.linearRampToValueAtTime(0.4, now + 0.01);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
 
-      // Stop sounds
-      oscillator.stop(now + 0.12);
-      noiseSource.stop(now + 0.08);
+        oscillator.start(now);
+        oscillator.stop(now + 0.2);
+      } else {
+        // Original R/L snare sounds
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+
+        // Create noise for snare effect
+        const bufferSize = audioContext.sampleRate * 0.1;
+        const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+        const output = buffer.getChannelData(0);
+
+        // Generate white noise
+        for (let i = 0; i < bufferSize; i++) {
+          output[i] = (Math.random() * 2 - 1) * 0.3;
+        }
+
+        const noiseSource = audioContext.createBufferSource();
+        noiseSource.buffer = buffer;
+        const noiseGain = audioContext.createGain();
+
+        // Connect nodes
+        oscillator.connect(gainNode);
+        noiseSource.connect(noiseGain);
+        gainNode.connect(audioContext.destination);
+        noiseGain.connect(audioContext.destination);
+
+        // Configure different sounds for R/L
+        const baseFreq = hand === 'R' ? 200 : 160;
+        const endFreq = hand === 'R' ? 80 : 60;
+
+        oscillator.frequency.setValueAtTime(baseFreq, now);
+        oscillator.frequency.exponentialRampToValueAtTime(endFreq, now + 0.08);
+
+        // Set up envelopes
+        gainNode.gain.setValueAtTime(0, now);
+        gainNode.gain.linearRampToValueAtTime(0.2, now + 0.005);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+
+        noiseGain.gain.setValueAtTime(0, now);
+        noiseGain.gain.linearRampToValueAtTime(0.15, now + 0.005);
+        noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+
+        // Start sounds
+        oscillator.start(now);
+        noiseSource.start(now);
+
+        // Stop sounds
+        oscillator.stop(now + 0.12);
+        noiseSource.stop(now + 0.08);
+      }
 
     } catch (error) {
       console.warn('Drum sound failed:', error);
