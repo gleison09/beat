@@ -545,14 +545,6 @@ const DrumRudimentsApp = () => {
           </h1>
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
-              <span className="text-sm">Sound</span>
-              <Switch
-                checked={soundEnabled}
-                onCheckedChange={setSoundEnabled}
-                className="data-[state=checked]:bg-green-600"
-              />
-            </div>
-            <div className="flex items-center space-x-2">
               <div className="text-sm text-center leading-tight">
                 <div>Random</div>
                 <div>Rest</div>
@@ -572,6 +564,14 @@ const DrumRudimentsApp = () => {
                 checked={drumKickEnabled}
                 onCheckedChange={setDrumKickEnabled}
                 className="data-[state=checked]:bg-orange-600"
+              />
+            </div>
+            <div className="flex items-center space-x-2">
+              <span className="text-sm">Sound</span>
+              <Switch
+                checked={soundEnabled}
+                onCheckedChange={setSoundEnabled}
+                className="data-[state=checked]:bg-green-600"
               />
             </div>
             <div className="flex items-center space-x-2">
