@@ -541,7 +541,7 @@ const DrumRudimentsApp = () => {
         {/* Header */}
         <div className="flex justify-between items-center">
           <h1 className="text-4xl font-bold text-red-800 dark:text-red-300">
-            Drum Rudiments Practice - UPDATED
+            Drum Rudiments Practice
           </h1>
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
