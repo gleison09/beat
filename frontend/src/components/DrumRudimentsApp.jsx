@@ -20,6 +20,7 @@ const DrumRudimentsApp = () => {
   const [soundEnabled, setSoundEnabled] = useState(false);
   const [clickEnabled, setClickEnabled] = useState(true);
   const [includeRest, setIncludeRest] = useState(false);
+  const [drumKickEnabled, setDrumKickEnabled] = useState(false);
   const [handPatterns, setHandPatterns] = useState({
     quarter: 'R',
     eighth: 'R-R',
