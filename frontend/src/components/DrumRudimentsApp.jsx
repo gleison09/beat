@@ -545,7 +545,7 @@ const DrumRudimentsApp = () => {
           </h1>
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
-              <div className="text-sm text-center leading-tight">
+              <div className="text-sm text-center leading-tight font-bold">
                 <div>Random</div>
                 <div>Rest</div>
               </div>
@@ -556,7 +556,7 @@ const DrumRudimentsApp = () => {
               />
             </div>
             <div className="flex items-center space-x-2">
-              <div className="text-sm text-center leading-tight">
+              <div className="text-sm text-center leading-tight font-bold">
                 <div>Drum</div>
                 <div>Kick</div>
               </div>
@@ -567,7 +567,7 @@ const DrumRudimentsApp = () => {
               />
             </div>
             <div className="flex items-center space-x-2">
-              <span className="text-sm">Sound</span>
+              <span className="text-sm font-bold">Sound</span>
               <Switch
                 checked={soundEnabled}
                 onCheckedChange={setSoundEnabled}
@@ -575,7 +575,7 @@ const DrumRudimentsApp = () => {
               />
             </div>
             <div className="flex items-center space-x-2">
-              <span className="text-sm">Click</span>
+              <span className="text-sm font-bold">Click</span>
               <Switch
                 checked={clickEnabled}
                 onCheckedChange={setClickEnabled}
