@@ -668,26 +668,6 @@ const DrumRudimentsApp = () => {
                 </Button>
 
                 <Button
-                  onClick={() => setIncludeRest(!includeRest)}
-                  variant="outline"
-                  className={`px-8 py-4 text-lg font-bold border-2 shadow-lg hover:shadow-xl active:shadow-md active:translate-y-0.5 transition-all duration-200 transform hover:scale-105 active:scale-100 ${
-                    includeRest
-                      ? 'border-green-400 bg-gradient-to-b from-green-50 to-green-100 hover:from-green-100 hover:to-green-200 dark:from-green-800 dark:to-green-900 dark:hover:from-green-700 dark:hover:to-green-800'
-                      : 'border-gray-400 bg-gradient-to-b from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-200 dark:from-gray-700 dark:to-gray-800 dark:hover:from-gray-600 dark:hover:to-gray-700'
-                  }`}
-                >
-                  <div className="flex flex-col items-center space-y-1">
-                    <span className="text-2xl">{includeRest ? '✓' : '✗'}</span>
-                    <span className={`font-bold ${includeRest ? 'text-green-600 dark:text-green-400' : 'text-gray-600 dark:text-gray-400'}`}>
-                      REST
-                    </span>
-                    <span className="text-xs text-gray-500 dark:text-gray-400">
-                      {includeRest ? 'ON' : 'OFF'}
-                    </span>
-                  </div>
-                </Button>
-
-                <Button
                   onClick={generateRandomSequence}
                   variant="outline"
                   className="px-8 py-4 text-lg font-bold border-2 border-red-400 bg-gradient-to-b from-red-50 to-red-100 hover:from-red-100 hover:to-red-200 dark:from-gray-700 dark:to-gray-800 dark:hover:from-gray-600 dark:hover:to-gray-700 shadow-lg hover:shadow-xl active:shadow-md active:translate-y-0.5 transition-all duration-200 transform hover:scale-105 active:scale-100"
