@@ -766,7 +766,11 @@ const DrumRudimentsApp = () => {
                     >
                       {note.type === 'quarter' && (
                         <div className="flex flex-col items-center">
-                          <span className="text-xs font-bold text-red-600 dark:text-red-400 mb-1">
+                          <span className={`text-xs font-bold mb-1 ${
+                            note.handPattern === 'K' 
+                              ? 'text-orange-600 dark:text-orange-400' 
+                              : 'text-red-600 dark:text-red-400'
+                          }`}>
                             {note.handPattern}
                           </span>
                           <span className={`text-4xl transition-all duration-150 ${
