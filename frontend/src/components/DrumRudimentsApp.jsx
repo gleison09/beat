@@ -685,7 +685,7 @@ const DrumRudimentsApp = () => {
                   <div className="flex flex-col items-center space-y-1">
                     <span className="text-2xl">𝄽</span>
                     <span className="text-red-600 dark:text-red-400">Quarter Rest</span>
-                    <span className="text-xs text-red-500 dark:text-gray-400">1 per beat</span>
+                    <span className="text-xs text-gray-500 dark:text-gray-400">1 per beat</span>
                   </div>
                 </Button>
 
