@@ -121,7 +121,7 @@ const DrumRudimentsApp = () => {
 
   // Hand pattern cycling functions
   const getNextHandPattern = (noteType, currentPattern) => {
-    const patterns = {
+    const basePatterns = {
       quarter: ['R', 'L'],
       eighth: ['R-R', 'R-L', 'L-L', 'L-R'],
       triplet: ['R-R-R', 'R-R-L', 'R-L-R', 'R-L-L', 'L-R-R', 'L-R-L', 'L-L-R', 'L-L-L'],
@@ -130,6 +130,44 @@ const DrumRudimentsApp = () => {
       thirtysecond: [],
       rest: [''] // Rest doesn't have hand patterns
     };
+
+    // Generate patterns with K if drum kick is enabled (except for thirty-second)
+    const patterns = { ...basePatterns };
+    
+    if (drumKickEnabled && noteType !== 'thirtysecond' && noteType !== 'rest') {
+      const subdivisions = noteTypes[noteType].subdivisions;
+      const kickPatterns = [];
+      
+      // Generate all combinations including K
+      const generateCombinations = (length) => {
+        const combinations = [];
+        const letters = ['R', 'L', 'K'];
+        
+        function generate(current, remaining) {
+          if (remaining === 0) {
+            combinations.push(current.join('-'));
+            return;
+          }
+          
+          for (let letter of letters) {
+            current.push(letter);
+            generate(current, remaining - 1);
+            current.pop();
+          }
+        }
+        
+        generate([], length);
+        return combinations;
+      };
+      
+      const allCombinations = generateCombinations(subdivisions);
+      
+      // First add patterns with only R and L, then patterns with K
+      const rlOnlyPatterns = allCombinations.filter(pattern => !pattern.includes('K'));
+      const patternsWithK = allCombinations.filter(pattern => pattern.includes('K'));
+      
+      patterns[noteType] = [...rlOnlyPatterns, ...patternsWithK];
+    }
 
     // Generate all 256 combinations for thirty-second note (2^8 = 256)
     if (patterns.thirtysecond.length === 0) {
