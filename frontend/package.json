@@ -1,7 +1,10 @@
 {
   "name": "frontend",
   "version": "0.1.0",
+<<<<<<< HEAD
   "homepage": "https://gleison09.github.io/beat",
+=======
+>>>>>>> 39a755aa9498edc15ee779af1bcee4b16eed489b
   "private": true,
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
@@ -32,8 +35,11 @@
     "@radix-ui/react-toggle": "^1.1.6",
     "@radix-ui/react-toggle-group": "^1.1.7",
     "@radix-ui/react-tooltip": "^1.2.4",
+<<<<<<< HEAD
     "ajv": "^8.12.0",
     "ajv-keywords": "^5.1.0",
+=======
+>>>>>>> 39a755aa9498edc15ee779af1bcee4b16eed489b
     "axios": "^1.8.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -60,9 +66,13 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
+<<<<<<< HEAD
     "test": "craco test",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build -r https://github.com/gleison09/gleison09/beat.git"
+=======
+    "test": "craco test"
+>>>>>>> 39a755aa9498edc15ee779af1bcee4b16eed489b
   },
   "browserslist": {
     "production": [
@@ -85,7 +95,10 @@
     "eslint-plugin-import": "2.31.0",
     "eslint-plugin-jsx-a11y": "6.10.2",
     "eslint-plugin-react": "7.37.4",
+<<<<<<< HEAD
     "gh-pages": "^6.3.0",
+=======
+>>>>>>> 39a755aa9498edc15ee779af1bcee4b16eed489b
     "globals": "15.15.0",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17"
