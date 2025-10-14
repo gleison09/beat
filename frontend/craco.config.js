@@ -13,6 +13,7 @@ module.exports = {
       // ✅ ESSENCIAL: define o caminho base para GitHub Pages
       webpackConfig.output.publicPath = '/beat/';
 
+      // 🔧 restante da lógica
       if (config.disableHotReload) {
         webpackConfig.plugins = webpackConfig.plugins.filter(plugin => {
           return !(plugin.constructor.name === 'HotModuleReplacementPlugin');
