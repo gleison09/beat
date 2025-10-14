@@ -62,7 +62,7 @@
     "build": "craco build",
     "test": "craco test",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build -r https://github.com/gleison09/gleison09/beat.git"
+    "deploy": "gh-pages -d build -r https://github.com/gleison09/beat.git"
   },
   "browserslist": {
     "production": [
