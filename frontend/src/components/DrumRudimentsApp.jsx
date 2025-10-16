@@ -64,7 +64,7 @@ const DrumRudimentsApp = () => {
         // BPM increased - no toast notification needed
       }
     }
-  }, [autoBpmEnabled, currentCycleCount, autoBpmCycles, bpm, setBpm, setCurrentCycleCount, toast]);
+  }, [autoBpmEnabled, currentCycleCount, autoBpmCycles, bpm, setBpm, setCurrentCycleCount]);
 
   // Auto BPM effect - monitors sequence completions
   useEffect(() => {
