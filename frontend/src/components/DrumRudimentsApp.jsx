@@ -1130,7 +1130,7 @@ const DrumRudimentsApp = () => {
           </a>
         </div>
       </div>
-      <Toaster />
+      {/* Toaster removed - no popup messages */}
     </div>
   );
 };
