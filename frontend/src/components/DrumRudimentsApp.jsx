@@ -915,7 +915,7 @@ const DrumRudimentsApp = () => {
                       </div>
                       {isPlaying && (
                         <div className="text-xs text-green-600 dark:text-green-400 font-medium">
-                          Cycle: {currentCycleCount}/{autoBpmCycles}
+                          Cycle: {currentCycleCount + 1}/{autoBpmCycles}
                         </div>
                       )}
                     </div>
