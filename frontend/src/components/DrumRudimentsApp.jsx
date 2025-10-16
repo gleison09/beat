@@ -83,12 +83,75 @@ const DrumRudimentsApp = () => {
         const currentBpm = bpm[0];
         const newBpm = Math.min(currentBpm + 5, 200);
         
-        // Increase BPM by 5 and reset counters
+        // Stop current playback to apply new BPM
+        window.isPlaybackActive = false;
+        if (window.playbackTimeout) {
+          clearTimeout(window.playbackTimeout);
+          window.playbackTimeout = null;
+        }
+        
+        // Update BPM and reset counters
         setBpm([newBpm]);
         setCurrentCycleCount(0);
         setSequenceCompletions(0);
         
         console.log(`BPM increased from ${currentBpm} to ${newBpm}`);
+        
+        // Restart playback with new BPM after a short delay
+        setTimeout(() => {
+          if (isPlaying && sequence.length > 0) {
+            window.isPlaybackActive = true;
+            
+            // Calculate new timing based on updated BPM
+            const beatDuration = (60 / newBpm) * 1000;
+            
+            // Continue from current position
+            let noteIndex = currentNoteIndex;
+            let subdivisionIndex = currentSubdivision;
+            
+            const continuePlayback = () => {
+              if (!window.isPlaybackActive) return;
+              
+              const currentNote = sequence[noteIndex];
+              subdivisionIndex++;
+              
+              if (subdivisionIndex < currentNote.subdivisions) {
+                setCurrentSubdivision(subdivisionIndex);
+                const handPattern = currentNote.handPattern.split('-');
+                const currentHand = handPattern[subdivisionIndex] || 'R';
+                const isRest = currentNote.type === 'rest';
+                playNoteSound(currentHand, isRest);
+                
+                const subdivisionDuration = beatDuration / currentNote.subdivisions;
+                window.playbackTimeout = setTimeout(continuePlayback, subdivisionDuration);
+              } else {
+                noteIndex++;
+                subdivisionIndex = 0;
+                
+                if (noteIndex >= sequence.length) {
+                  noteIndex = 0;
+                  if (autoBpmEnabled) {
+                    setSequenceCompletions(prev => prev + 1);
+                  }
+                }
+                
+                setCurrentNoteIndex(noteIndex);
+                setCurrentSubdivision(0);
+                
+                const nextNote = sequence[noteIndex];
+                const nextHand = nextNote.handPattern.split('-')[0] || 'R';
+                const isNextRest = nextNote.type === 'rest';
+                playNoteSound(nextHand, isNextRest);
+                
+                const nextSubdivisionDuration = beatDuration / nextNote.subdivisions;
+                window.playbackTimeout = setTimeout(continuePlayback, nextSubdivisionDuration);
+              }
+            };
+            
+            const firstSubdivisionDuration = beatDuration / sequence[noteIndex].subdivisions;
+            window.playbackTimeout = setTimeout(continuePlayback, firstSubdivisionDuration);
+          }
+        }, 100);
         
         toast({
           title: "BPM Increased!",
@@ -96,7 +159,7 @@ const DrumRudimentsApp = () => {
         });
       }
     }
-  }, [sequenceCompletions, autoBpmEnabled, autoBpmCycles, bpm, isPlaying, toast]);
+  }, [sequenceCompletions, autoBpmEnabled, autoBpmCycles, bpm, isPlaying, toast, sequence, currentNoteIndex, currentSubdivision, playNoteSound]);
 
   // Timer effect
   useEffect(() => {
