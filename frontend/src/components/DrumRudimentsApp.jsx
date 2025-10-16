@@ -827,22 +827,27 @@ const DrumRudimentsApp = () => {
                   </div>
                   {autoBpmEnabled && (
                     <div className="flex items-center space-x-3">
-                      <div className="flex space-x-1">
-                        {[4, 8, 16, 32].map((cycles) => (
-                          <Button
-                            key={cycles}
-                            onClick={() => setAutoBpmCycles(cycles)}
-                            variant={autoBpmCycles === cycles ? "default" : "outline"}
-                            size="sm"
-                            className={`w-10 h-8 text-xs ${
-                              autoBpmCycles === cycles 
-                                ? 'bg-red-600 text-white' 
-                                : 'border-red-400 text-red-600 dark:text-red-400'
-                            }`}
-                          >
-                            {cycles}
-                          </Button>
-                        ))}
+                      <div className="flex flex-col items-center space-y-1">
+                        <div className="text-xs text-gray-600 dark:text-gray-400 font-medium">
+                          Sequence
+                        </div>
+                        <div className="flex space-x-1">
+                          {[4, 8, 16, 32].map((cycles) => (
+                            <Button
+                              key={cycles}
+                              onClick={() => setAutoBpmCycles(cycles)}
+                              variant={autoBpmCycles === cycles ? "default" : "outline"}
+                              size="sm"
+                              className={`w-10 h-8 text-xs ${
+                                autoBpmCycles === cycles 
+                                  ? 'bg-red-600 text-white' 
+                                  : 'border-red-400 text-red-600 dark:text-red-400'
+                              }`}
+                            >
+                              {cycles}
+                            </Button>
+                          ))}
+                        </div>
                       </div>
                       {isPlaying && (
                         <div className="text-xs text-red-600 dark:text-red-400 font-medium">
