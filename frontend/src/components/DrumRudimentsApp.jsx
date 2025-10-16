@@ -40,7 +40,7 @@ const DrumRudimentsApp = () => {
     rest: ''
   });
 
-  const { toast } = useToast();
+  // Toast functionality removed
 
   // Auto BPM increase function
   const handleSequenceComplete = useCallback(() => {
