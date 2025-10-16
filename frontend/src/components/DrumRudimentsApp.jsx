@@ -101,13 +101,13 @@ const DrumRudimentsApp = () => {
   // BPM change effect - applies new BPM to current playback immediately
   useEffect(() => {
     if (isPlaying && window.isPlaybackActive && currentPlaybackBpm.current !== bpm[0]) {
-      console.log(`BPM changed from ${currentPlaybackBpm.current} to ${bmp[0]} - updating playback timing`);
-      currentPlaybackBpm.current = bmp[0];
+      console.log(`BPM changed from ${currentPlaybackBpm.current} to ${bpm[0]} - updating playback timing`);
+      currentPlaybackBpm.current = bpm[0];
       
       // Force recalculation of timing by updating the global BPM reference
-      window.currentBPM = bmp[0];
+      window.currentBPM = bpm[0];
     }
-  }, [bmp, isPlaying]);
+  }, [bpm, isPlaying]);
 
   // Timer effect
   useEffect(() => {
