@@ -205,10 +205,6 @@ const DrumRudimentsApp = () => {
   // Remove note from sequence
   const removeNote = (noteId) => {
     setSequence(prev => prev.filter(note => note.id !== noteId));
-    toast({
-      title: "Note removed",
-      description: "Note has been removed from the sequence",
-    });
   };
 
   // Hand pattern cycling functions
