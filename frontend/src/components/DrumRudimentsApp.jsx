@@ -870,6 +870,13 @@ const DrumRudimentsApp = () => {
                 onValueChange={setBpm}
                 className="w-full"
               />
+              
+              {/* Speed indicator centered */}
+              <div className="flex justify-center">
+                <div className="text-sm text-gray-600 dark:text-gray-400">
+                  {bpm[0] <= 80 ? 'Slow' : bpm[0] <= 120 ? 'Moderate' : bpm[0] <= 160 ? 'Fast' : 'Very Fast'}
+                </div>
+              </div>
             </div>
           </CardContent>
         </Card>
