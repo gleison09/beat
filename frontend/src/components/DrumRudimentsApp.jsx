@@ -451,6 +451,11 @@ const DrumRudimentsApp = () => {
     setIsPlaying(true);
     setCurrentNoteIndex(0);
     setCurrentSubdivision(0);
+    
+    // Start timer
+    if (!timerActive) {
+      setTimerActive(true);
+    }
 
     // Initialize audio context first
     try {
