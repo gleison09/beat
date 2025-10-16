@@ -62,10 +62,7 @@ const DrumRudimentsApp = () => {
         
         console.log(`BPM increased from ${currentBpm} to ${newBpm}`);
         
-        toast({
-          title: "BPM Increased!",
-          description: `BPM increased to ${newBpm} after ${autoBpmCycles} cycles`,
-        });
+        // BPM increased - no toast notification needed
       }
     }
   }, [autoBpmEnabled, currentCycleCount, autoBpmCycles, bpm, setBpm, setCurrentCycleCount, toast]);
@@ -90,10 +87,7 @@ const DrumRudimentsApp = () => {
         
         console.log(`BPM increased from ${currentBpm} to ${newBpm}`);
         
-        toast({
-          title: "BPM Increased!",
-          description: `BPM increased to ${newBpm} after ${autoBpmCycles} cycles`,
-        });
+        // BPM increased - no toast notification needed
       }
     }
   }, [sequenceCompletions, autoBpmEnabled, autoBpmCycles, bpm, isPlaying, toast]);
