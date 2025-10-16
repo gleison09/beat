@@ -890,32 +890,39 @@ const DrumRudimentsApp = () => {
 
         {/* Sequence Display */}
         <Card className="border-red-200 dark:border-gray-700">
-          <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle className="text-red-700 dark:text-red-300">Note Sequence</CardTitle>
-            {sequence.length > 0 && (
-              <Button
-                onClick={clearSequence}
-                variant="outline"
-                size="sm"
-                className="border-2 border-red-400 bg-gradient-to-b from-red-50 to-red-100 hover:from-red-100 hover:to-red-200 text-red-600 dark:from-gray-700 dark:to-gray-800 dark:hover:from-gray-600 dark:hover:to-gray-700 dark:text-red-400 shadow-md hover:shadow-lg active:shadow-sm active:translate-y-0.5 transition-all duration-200"
-              >
-                <Trash2 className="h-4 w-4 mr-2" />
-                Clear All
-              </Button>
-            )}
-          </CardHeader>
-          
-          {/* Timer Display - Centered */}
-          <div className="flex justify-center py-4 border-b border-red-200 dark:border-gray-700">
-            <div className="text-center">
-              <div className="text-3xl font-bold font-mono text-red-700 dark:text-red-300">
-                {formatTimer(timerSeconds)}
-              </div>
-              <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                Activity Time
+          <CardHeader className="grid grid-cols-3 items-center py-6">
+            {/* Left Column: Title */}
+            <div className="flex justify-start">
+              <CardTitle className="text-red-700 dark:text-red-300">Note Sequence</CardTitle>
+            </div>
+            
+            {/* Center Column: Timer */}
+            <div className="flex justify-center">
+              <div className="text-center">
+                <div className="text-2xl font-bold font-mono text-red-700 dark:text-red-300">
+                  {formatTimer(timerSeconds)}
+                </div>
+                <div className="text-xs text-gray-500 dark:text-gray-400">
+                  Activity Time
+                </div>
               </div>
             </div>
-          </div>
+            
+            {/* Right Column: Clear All Button */}
+            <div className="flex justify-end">
+              {sequence.length > 0 && (
+                <Button
+                  onClick={clearSequence}
+                  variant="outline"
+                  size="sm"
+                  className="border-2 border-red-400 bg-gradient-to-b from-red-50 to-red-100 hover:from-red-100 hover:to-red-200 text-red-600 dark:from-gray-700 dark:to-gray-800 dark:hover:from-gray-600 dark:hover:to-gray-700 dark:text-red-400 shadow-md hover:shadow-lg active:shadow-sm active:translate-y-0.5 transition-all duration-200"
+                >
+                  <Trash2 className="h-4 w-4 mr-2" />
+                  Clear All
+                </Button>
+              )}
+            </div>
+          </CardHeader>
           
           <CardContent>
             {sequence.length === 0 ? (
