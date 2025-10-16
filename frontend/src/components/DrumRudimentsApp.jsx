@@ -30,6 +30,7 @@ const DrumRudimentsApp = () => {
   const [autoBpmEnabled, setAutoBpmEnabled] = useState(false);
   const [autoBpmCycles, setAutoBpmCycles] = useState(4); // 4, 8, 16, or 32
   const [currentCycleCount, setCurrentCycleCount] = useState(0);
+  const [sequenceCompletions, setSequenceCompletions] = useState(0);
   
   const [handPatterns, setHandPatterns] = useState({
     quarter: 'R',
