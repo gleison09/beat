@@ -557,6 +557,9 @@ const DrumRudimentsApp = () => {
         return;
       }
 
+      // Always use current BPM for timing calculations
+      const currentBeatDuration = (60 / (window.currentBPM || bpm[0])) * 1000;
+
       const currentNote = sequence[noteIndex];
       subdivisionIndex++;
 
@@ -571,7 +574,7 @@ const DrumRudimentsApp = () => {
 
         // Schedule next subdivision only if still playing
         if (window.isPlaybackActive) {
-          const subdivisionDuration = beatDuration / currentNote.subdivisions;
+          const subdivisionDuration = currentBeatDuration / currentNote.subdivisions;
           window.playbackTimeout = setTimeout(playNextSubdivision, subdivisionDuration);
         }
       } else {
@@ -601,7 +604,7 @@ const DrumRudimentsApp = () => {
 
         // Schedule next subdivision only if still playing
         if (window.isPlaybackActive) {
-          const nextSubdivisionDuration = beatDuration / nextNote.subdivisions;
+          const nextSubdivisionDuration = currentBeatDuration / nextNote.subdivisions;
           window.playbackTimeout = setTimeout(playNextSubdivision, nextSubdivisionDuration);
         }
       }
