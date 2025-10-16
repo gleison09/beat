@@ -70,6 +70,34 @@ const DrumRudimentsApp = () => {
     }
   }, [autoBpmEnabled, currentCycleCount, autoBpmCycles, bpm, setBpm, setCurrentCycleCount, toast]);
 
+  // Auto BPM effect - monitors sequence completions
+  useEffect(() => {
+    if (autoBpmEnabled && sequenceCompletions > 0 && isPlaying) {
+      const newCycleCount = sequenceCompletions;
+      setCurrentCycleCount(newCycleCount);
+      
+      console.log(`Cycle updated: ${newCycleCount}/${autoBpmCycles}`);
+      
+      if (newCycleCount >= autoBpmCycles) {
+        // Calculate new BPM
+        const currentBpm = bpm[0];
+        const newBpm = Math.min(currentBpm + 5, 200);
+        
+        // Increase BPM by 5 and reset counters
+        setBpm([newBpm]);
+        setCurrentCycleCount(0);
+        setSequenceCompletions(0);
+        
+        console.log(`BPM increased from ${currentBpm} to ${newBpm}`);
+        
+        toast({
+          title: "BPM Increased!",
+          description: `BPM increased to ${newBpm} after ${autoBpmCycles} cycles`,
+        });
+      }
+    }
+  }, [sequenceCompletions, autoBpmEnabled, autoBpmCycles, bpm, isPlaying, toast]);
+
   // Timer effect
   useEffect(() => {
     let interval = null;
