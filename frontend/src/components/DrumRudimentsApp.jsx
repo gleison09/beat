@@ -584,6 +584,8 @@ const DrumRudimentsApp = () => {
     setIsPlaying(false);
     setCurrentNoteIndex(-1);
     setCurrentSubdivision(-1);
+    // Reset auto BPM cycle count when stopping
+    setCurrentCycleCount(0);
   }, []);
 
   // Cleanup on unmount
