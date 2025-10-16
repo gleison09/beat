@@ -351,10 +351,6 @@ const DrumRudimentsApp = () => {
     setTimerActive(false);
     setCurrentCycleCount(0);
     setSequenceCompletions(0);
-    toast({
-      title: "Sequence cleared",
-      description: "All notes have been removed from the sequence",
-    });
   };
 
   // Shared audio context
