@@ -610,8 +610,9 @@ const DrumRudimentsApp = () => {
       }
     };
 
-    // Start the subdivision timing
-    const firstSubdivisionDuration = beatDuration / sequence[0].subdivisions;
+    // Start the subdivision timing with current BPM
+    const initialBeatDuration = (60 / bpm[0]) * 1000;
+    const firstSubdivisionDuration = initialBeatDuration / sequence[0].subdivisions;
     window.playbackTimeout = setTimeout(playNextSubdivision, firstSubdivisionDuration);
   }, [sequence, bpm, playNoteSound, getAudioContext, toast, timerActive, autoBpmEnabled]);
 
