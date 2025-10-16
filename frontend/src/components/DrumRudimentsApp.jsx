@@ -537,9 +537,10 @@ const DrumRudimentsApp = () => {
 
     // Set playing flag
     window.isPlaybackActive = true;
-
-    // Calculate timing based on BPM
-    const beatDuration = (60 / bpm[0]) * 1000;
+    
+    // Initialize current BPM reference
+    currentPlaybackBpm.current = bpm[0];
+    window.currentBPM = bpm[0];
 
     let noteIndex = 0;
     let subdivisionIndex = 0;
