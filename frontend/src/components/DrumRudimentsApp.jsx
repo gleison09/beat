@@ -799,22 +799,29 @@ const DrumRudimentsApp = () => {
                     />
                   </div>
                   {autoBpmEnabled && (
-                    <div className="flex space-x-1">
-                      {[4, 8, 16, 32].map((cycles) => (
-                        <Button
-                          key={cycles}
-                          onClick={() => setAutoBpmCycles(cycles)}
-                          variant={autoBpmCycles === cycles ? "default" : "outline"}
-                          size="sm"
-                          className={`w-10 h-8 text-xs ${
-                            autoBpmCycles === cycles 
-                              ? 'bg-green-600 text-white' 
-                              : 'border-green-400 text-green-600 dark:text-green-400'
-                          }`}
-                        >
-                          {cycles}
-                        </Button>
-                      ))}
+                    <div className="flex items-center space-x-3">
+                      <div className="flex space-x-1">
+                        {[4, 8, 16, 32].map((cycles) => (
+                          <Button
+                            key={cycles}
+                            onClick={() => setAutoBpmCycles(cycles)}
+                            variant={autoBpmCycles === cycles ? "default" : "outline"}
+                            size="sm"
+                            className={`w-10 h-8 text-xs ${
+                              autoBpmCycles === cycles 
+                                ? 'bg-green-600 text-white' 
+                                : 'border-green-400 text-green-600 dark:text-green-400'
+                            }`}
+                          >
+                            {cycles}
+                          </Button>
+                        ))}
+                      </div>
+                      {isPlaying && (
+                        <div className="text-xs text-green-600 dark:text-green-400 font-medium">
+                          Cycle: {currentCycleCount}/{autoBpmCycles}
+                        </div>
+                      )}
                     </div>
                   )}
                   <div className="text-sm text-gray-600 dark:text-gray-400">
