@@ -508,8 +508,25 @@ const DrumRudimentsApp = () => {
         subdivisionIndex = 0;
 
         if (noteIndex >= sequence.length) {
-          // Loop back to beginning
+          // Loop back to beginning - sequence completed
           noteIndex = 0;
+          
+          // Auto BPM increase logic
+          if (autoBpmEnabled) {
+            const newCycleCount = currentCycleCount + 1;
+            setCurrentCycleCount(newCycleCount);
+            
+            if (newCycleCount >= autoBpmCycles) {
+              // Increase BPM by 5 and reset cycle count
+              setBpm(prev => [Math.min(prev[0] + 5, 200)]);
+              setCurrentCycleCount(0);
+              
+              toast({
+                title: "BPM Increased!",
+                description: `BPM increased to ${Math.min(bpm[0] + 5, 200)} after ${autoBpmCycles} cycles`,
+              });
+            }
+          }
         }
 
         setCurrentNoteIndex(noteIndex);
