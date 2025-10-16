@@ -21,12 +21,9 @@ const DrumRudimentsApp = () => {
   const [clickEnabled, setClickEnabled] = useState(true);
   const [includeRest, setIncludeRest] = useState(false);
   const [drumKickEnabled, setDrumKickEnabled] = useState(false);
-    // Timer states
-  const [timer, setTimer] = useState(0); // Timer in seconds
+   [timer, setTimer] = useState(0); // Timer in seconds
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const timerIntervalRef = useRef(null);
-  
-  // Auto BPM increase states
   const [autoBpmEnabled, setAutoBpmEnabled] = useState(false);
   const [cycleCount, setCycleCount] = useState(4); // 4, 8, 16, or 32
   const [currentCycles, setCurrentCycles] = useState(0);
@@ -41,7 +38,6 @@ const DrumRudimentsApp = () => {
   });
 
   const { toast } = useToast();
-    // Timer functions
   const formatTime = (seconds) => {
     const hours = Math.floor(seconds / 3600);
     const minutes = Math.floor((seconds % 3600) / 60);
