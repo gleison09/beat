@@ -89,7 +89,7 @@ const DrumRudimentsApp = () => {
         // BPM increased - no toast notification needed
       }
     }
-  }, [sequenceCompletions, autoBpmEnabled, autoBpmCycles, bpm, isPlaying, toast]);
+  }, [sequenceCompletions, autoBpmEnabled, autoBpmCycles, bpm, isPlaying]);
 
   // BPM change effect - applies new BPM to current playback immediately
   useEffect(() => {
