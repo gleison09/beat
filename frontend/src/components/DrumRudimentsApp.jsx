@@ -836,6 +836,19 @@ const DrumRudimentsApp = () => {
               </Button>
             )}
           </CardHeader>
+          
+          {/* Timer Display */}
+          <div className="flex justify-center py-4 border-b border-red-200 dark:border-gray-700">
+            <div className="text-center">
+              <div className="text-3xl font-bold font-mono text-red-700 dark:text-red-300">
+                {formatTimer(timerSeconds)}
+              </div>
+              <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                Activity Time
+              </div>
+            </div>
+          </div>
+          
           <CardContent>
             {sequence.length === 0 ? (
               <div className="text-center py-12 text-gray-500 dark:text-gray-400">
