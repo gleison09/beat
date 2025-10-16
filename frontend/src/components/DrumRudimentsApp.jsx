@@ -330,12 +330,7 @@ const DrumRudimentsApp = () => {
 
     // Add new sequence to existing sequence (don't replace)
     setSequence(prev => [...prev, ...newSequence]);
-
-    toast({
-      title: "Random sequence added",
-      description: `Added ${newSequence.length} notes with ${totalStems} stems to sequence`,
-    });
-  }, [includeRest, toast]);
+  }, [includeRest]);
 
   const cycleHandPattern = (noteType) => {
     if (noteType === 'rest') return; // Don't cycle hand patterns for rests
