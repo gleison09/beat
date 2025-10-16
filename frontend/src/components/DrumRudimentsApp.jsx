@@ -841,7 +841,7 @@ const DrumRudimentsApp = () => {
                     <Switch
                       checked={autoBpmEnabled}
                       onCheckedChange={setAutoBpmEnabled}
-                      className="data-[state=checked]:bg-green-600"
+                      className="data-[state=checked]:bg-red-600"
                     />
                   </div>
                   {autoBpmEnabled && (
