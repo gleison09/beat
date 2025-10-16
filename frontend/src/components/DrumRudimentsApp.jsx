@@ -372,6 +372,9 @@ const DrumRudimentsApp = () => {
 
   // Shared audio context
   const audioContextRef = useRef(null);
+  
+  // Current BPM reference for playback
+  const currentPlaybackBpm = useRef(70);
 
   // Initialize audio context once
   const getAudioContext = useCallback(() => {
