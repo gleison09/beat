@@ -771,8 +771,40 @@ const DrumRudimentsApp = () => {
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <Label htmlFor="bpm" className="text-lg font-medium">BPM: {bpm[0]}</Label>
-                <div className="text-sm text-gray-600 dark:text-gray-400">
-                  {bpm[0] <= 80 ? 'Slow' : bpm[0] <= 120 ? 'Moderate' : bpm[0] <= 160 ? 'Fast' : 'Very Fast'}
+                <div className="flex items-center space-x-4">
+                  <div className="flex items-center space-x-2">
+                    <div className="text-sm text-center leading-tight font-bold">
+                      <div>Auto</div>
+                      <div>BPM</div>
+                    </div>
+                    <Switch
+                      checked={autoBpmEnabled}
+                      onCheckedChange={setAutoBpmEnabled}
+                      className="data-[state=checked]:bg-green-600"
+                    />
+                  </div>
+                  {autoBpmEnabled && (
+                    <div className="flex space-x-1">
+                      {[4, 8, 16, 32].map((cycles) => (
+                        <Button
+                          key={cycles}
+                          onClick={() => setAutoBpmCycles(cycles)}
+                          variant={autoBpmCycles === cycles ? "default" : "outline"}
+                          size="sm"
+                          className={`w-10 h-8 text-xs ${
+                            autoBpmCycles === cycles 
+                              ? 'bg-green-600 text-white' 
+                              : 'border-green-400 text-green-600 dark:text-green-400'
+                          }`}
+                        >
+                          {cycles}
+                        </Button>
+                      ))}
+                    </div>
+                  )}
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    {bpm[0] <= 80 ? 'Slow' : bpm[0] <= 120 ? 'Moderate' : bpm[0] <= 160 ? 'Fast' : 'Very Fast'}
+                  </div>
                 </div>
               </div>
               <Slider
