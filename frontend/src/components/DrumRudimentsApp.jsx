@@ -42,6 +42,27 @@ const DrumRudimentsApp = () => {
 
   const { toast } = useToast();
 
+  // Timer effect
+  useEffect(() => {
+    let interval = null;
+    if (timerActive && isPlaying) {
+      interval = setInterval(() => {
+        setTimerSeconds(seconds => seconds + 1);
+      }, 1000);
+    } else if (!isPlaying && timerSeconds !== 0) {
+      setTimerActive(false);
+    }
+    return () => clearInterval(interval);
+  }, [timerActive, isPlaying, timerSeconds]);
+
+  // Format timer display
+  const formatTimer = (totalSeconds) => {
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  };
+
   // Note types with their symbols and subdivisions per beat
   const noteTypes = {
     quarter: {
