@@ -594,7 +594,7 @@ const DrumRudimentsApp = () => {
     // Start the subdivision timing
     const firstSubdivisionDuration = beatDuration / sequence[0].subdivisions;
     window.playbackTimeout = setTimeout(playNextSubdivision, firstSubdivisionDuration);
-  }, [sequence, bpm, playNoteSound, getAudioContext, toast, timerActive, handleSequenceComplete]);
+  }, [sequence, bpm, playNoteSound, getAudioContext, toast, timerActive, autoBpmEnabled]);
 
   // Stop playback
   const stopPlayback = useCallback(() => {
