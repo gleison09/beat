@@ -492,11 +492,6 @@ const DrumRudimentsApp = () => {
   // Start playback with improved timing and rest handling
   const startPlayback = useCallback(() => {
     if (sequence.length === 0) {
-      toast({
-        title: "Empty sequence",
-        description: "Please add some notes to the sequence first",
-        variant: "destructive"
-      });
       return;
     }
 
