@@ -855,8 +855,8 @@ const DrumRudimentsApp = () => {
                             size="sm"
                             className={`w-10 h-8 text-xs ${
                               autoBpmCycles === cycles 
-                                ? 'bg-green-600 text-white' 
-                                : 'border-green-400 text-green-600 dark:text-green-400'
+                                ? 'bg-red-600 text-white' 
+                                : 'border-red-400 text-red-600 dark:text-red-400'
                             }`}
                           >
                             {cycles}
