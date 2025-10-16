@@ -5,8 +5,7 @@ import { Slider } from './ui/slider';
 import { Switch } from './ui/switch';
 import { Label } from './ui/label';
 import { Play, Square, Moon, Sun, Trash2 } from 'lucide-react';
-import { useToast } from '../hooks/use-toast';
-import { Toaster } from './ui/toaster';
+// Toast imports removed - no popup messages
 
 const DrumRudimentsApp = () => {
   const [sequence, setSequence] = useState([]);
