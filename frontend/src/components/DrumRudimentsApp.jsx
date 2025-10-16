@@ -21,7 +21,7 @@ const DrumRudimentsApp = () => {
   const [clickEnabled, setClickEnabled] = useState(true);
   const [includeRest, setIncludeRest] = useState(false);
   const [drumKickEnabled, setDrumKickEnabled] = useState(false);
-   [timer, setTimer] = useState(0); // Timer in seconds
+  const [timer, setTimer] = useState(0); 
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const timerIntervalRef = useRef(null);
   const [autoBpmEnabled, setAutoBpmEnabled] = useState(false);
