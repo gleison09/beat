@@ -294,6 +294,10 @@ const DrumRudimentsApp = () => {
     setCurrentNoteIndex(-1);
     setCurrentSubdivision(-1);
     setIsPlaying(false);
+    // Reset timer
+    setTimerSeconds(0);
+    setTimerActive(false);
+    setCurrentCycleCount(0);
     toast({
       title: "Sequence cleared",
       description: "All notes have been removed from the sequence",
