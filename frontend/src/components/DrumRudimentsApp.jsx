@@ -891,9 +891,11 @@ const DrumRudimentsApp = () => {
         {/* Sequence Display */}
         <Card className="border-red-200 dark:border-gray-700">
           <CardHeader className="flex flex-row items-center justify-between">
-            <div className="flex items-center space-x-6">
-              <CardTitle className="text-red-700 dark:text-red-300">Note Sequence</CardTitle>
-              {/* Timer Display */}
+            {/* Left: Title */}
+            <CardTitle className="text-red-700 dark:text-red-300 flex-shrink-0">Note Sequence</CardTitle>
+            
+            {/* Center: Timer */}
+            <div className="flex-1 flex justify-center">
               <div className="text-center">
                 <div className="text-2xl font-bold font-mono text-red-700 dark:text-red-300">
                   {formatTimer(timerSeconds)}
@@ -903,17 +905,21 @@ const DrumRudimentsApp = () => {
                 </div>
               </div>
             </div>
-            {sequence.length > 0 && (
-              <Button
-                onClick={clearSequence}
-                variant="outline"
-                size="sm"
-                className="border-2 border-red-400 bg-gradient-to-b from-red-50 to-red-100 hover:from-red-100 hover:to-red-200 text-red-600 dark:from-gray-700 dark:to-gray-800 dark:hover:from-gray-600 dark:hover:to-gray-700 dark:text-red-400 shadow-md hover:shadow-lg active:shadow-sm active:translate-y-0.5 transition-all duration-200"
-              >
-                <Trash2 className="h-4 w-4 mr-2" />
-                Clear All
-              </Button>
-            )}
+            
+            {/* Right: Clear All Button */}
+            <div className="flex-shrink-0">
+              {sequence.length > 0 && (
+                <Button
+                  onClick={clearSequence}
+                  variant="outline"
+                  size="sm"
+                  className="border-2 border-red-400 bg-gradient-to-b from-red-50 to-red-100 hover:from-red-100 hover:to-red-200 text-red-600 dark:from-gray-700 dark:to-gray-800 dark:hover:from-gray-600 dark:hover:to-gray-700 dark:text-red-400 shadow-md hover:shadow-lg active:shadow-sm active:translate-y-0.5 transition-all duration-200"
+                >
+                  <Trash2 className="h-4 w-4 mr-2" />
+                  Clear All
+                </Button>
+              )}
+            </div>
           </CardHeader>
           
           <CardContent>
