@@ -42,6 +42,33 @@ const DrumRudimentsApp = () => {
 
   const { toast } = useToast();
 
+  // Auto BPM increase function
+  const handleSequenceComplete = useCallback(() => {
+    if (autoBpmEnabled) {
+      const newCycleCount = currentCycleCount + 1;
+      setCurrentCycleCount(newCycleCount);
+      
+      console.log(`Sequence completed: ${newCycleCount}/${autoBpmCycles}`);
+      
+      if (newCycleCount >= autoBpmCycles) {
+        // Calculate new BPM
+        const currentBpm = bpm[0];
+        const newBpm = Math.min(currentBpm + 5, 200);
+        
+        // Increase BPM by 5 and reset cycle count
+        setBpm([newBpm]);
+        setCurrentCycleCount(0);
+        
+        console.log(`BPM increased from ${currentBpm} to ${newBpm}`);
+        
+        toast({
+          title: "BPM Increased!",
+          description: `BPM increased to ${newBpm} after ${autoBpmCycles} cycles`,
+        });
+      }
+    }
+  }, [autoBpmEnabled, currentCycleCount, autoBpmCycles, bpm, setBpm, setCurrentCycleCount, toast]);
+
   // Timer effect
   useEffect(() => {
     let interval = null;
