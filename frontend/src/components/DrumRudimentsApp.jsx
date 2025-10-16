@@ -516,14 +516,22 @@ const DrumRudimentsApp = () => {
             const newCycleCount = currentCycleCount + 1;
             setCurrentCycleCount(newCycleCount);
             
+            console.log(`Cycle completed: ${newCycleCount}/${autoBpmCycles}`);
+            
             if (newCycleCount >= autoBpmCycles) {
+              // Calculate new BPM
+              const currentBpm = bpm[0];
+              const newBpm = Math.min(currentBpm + 5, 200);
+              
               // Increase BPM by 5 and reset cycle count
-              setBpm(prev => [Math.min(prev[0] + 5, 200)]);
+              setBpm([newBpm]);
               setCurrentCycleCount(0);
+              
+              console.log(`BPM increased from ${currentBpm} to ${newBpm}`);
               
               toast({
                 title: "BPM Increased!",
-                description: `BPM increased to ${Math.min(bpm[0] + 5, 200)} after ${autoBpmCycles} cycles`,
+                description: `BPM increased to ${newBpm} after ${autoBpmCycles} cycles`,
               });
             }
           }
