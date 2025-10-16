@@ -21,6 +21,16 @@ const DrumRudimentsApp = () => {
   const [clickEnabled, setClickEnabled] = useState(true);
   const [includeRest, setIncludeRest] = useState(false);
   const [drumKickEnabled, setDrumKickEnabled] = useState(false);
+  
+  // Timer states
+  const [timerSeconds, setTimerSeconds] = useState(0);
+  const [timerActive, setTimerActive] = useState(false);
+  
+  // Auto BPM increase states
+  const [autoBpmEnabled, setAutoBpmEnabled] = useState(false);
+  const [autoBpmCycles, setAutoBpmCycles] = useState(4); // 4, 8, 16, or 32
+  const [currentCycleCount, setCurrentCycleCount] = useState(0);
+  
   const [handPatterns, setHandPatterns] = useState({
     quarter: 'R',
     eighth: 'R-R',
