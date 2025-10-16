@@ -567,8 +567,10 @@ const DrumRudimentsApp = () => {
           // Loop back to beginning - sequence completed
           noteIndex = 0;
           
-          // Handle auto BPM increase
-          handleSequenceComplete();
+          // Increment sequence completion counter for auto BPM
+          if (autoBpmEnabled) {
+            setSequenceCompletions(prev => prev + 1);
+          }
         }
 
         setCurrentNoteIndex(noteIndex);
