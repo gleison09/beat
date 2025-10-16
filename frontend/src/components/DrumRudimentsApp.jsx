@@ -21,6 +21,16 @@ const DrumRudimentsApp = () => {
   const [clickEnabled, setClickEnabled] = useState(true);
   const [includeRest, setIncludeRest] = useState(false);
   const [drumKickEnabled, setDrumKickEnabled] = useState(false);
+    // Timer states
+  const [timer, setTimer] = useState(0); // Timer in seconds
+  const [isTimerRunning, setIsTimerRunning] = useState(false);
+  const timerIntervalRef = useRef(null);
+  
+  // Auto BPM increase states
+  const [autoBpmEnabled, setAutoBpmEnabled] = useState(false);
+  const [cycleCount, setCycleCount] = useState(4); // 4, 8, 16, or 32
+  const [currentCycles, setCurrentCycles] = useState(0);
+  const [completedSequences, setCompletedSequences] = useState(0);
   const [handPatterns, setHandPatterns] = useState({
     quarter: 'R',
     eighth: 'R-R',
@@ -31,6 +41,50 @@ const DrumRudimentsApp = () => {
   });
 
   const { toast } = useToast();
+    // Timer functions
+  const formatTime = (seconds) => {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  const startTimer = useCallback(() => {
+    if (!isTimerRunning) {
+      setIsTimerRunning(true);
+      timerIntervalRef.current = setInterval(() => {
+        setTimer(prev => prev + 1);
+      }, 1000);
+    }
+  }, [isTimerRunning]);
+
+  const stopTimer = useCallback(() => {
+    if (isTimerRunning) {
+      setIsTimerRunning(false);
+      if (timerIntervalRef.current) {
+        clearInterval(timerIntervalRef.current);
+        timerIntervalRef.current = null;
+      }
+    }
+  }, [isTimerRunning]);
+
+  const resetTimer = useCallback(() => {
+    setTimer(0);
+    setIsTimerRunning(false);
+    if (timerIntervalRef.current) {
+      clearInterval(timerIntervalRef.current);
+      timerIntervalRef.current = null;
+    }
+  }, []);
+
+  // Cleanup timer on unmount
+  useEffect(() => {
+    return () => {
+      if (timerIntervalRef.current) {
+        clearInterval(timerIntervalRef.current);
+      }
+    };
+  }, []);
 
   // Note types with their symbols and subdivisions per beat
   const noteTypes = {
