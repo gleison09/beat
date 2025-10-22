@@ -6,7 +6,7 @@ import os
 import logging
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict
-from typing import List
+from typing import List, Optional
 import uuid
 from datetime import datetime, timezone
 
@@ -14,10 +14,19 @@ from datetime import datetime, timezone
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-# MongoDB connection
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+# MongoDB connection (with fallback for when MongoDB is not available)
+mongo_url = os.environ.get('MONGO_URL', 'mongodb://localhost:27017/')
+db_name = os.environ.get('DB_NAME', 'beat_db')
+
+# Try to connect to MongoDB but don't fail if it's not available
+client: Optional[AsyncIOMotorClient] = None
+db = None
+
+try:
+    client = AsyncIOMotorClient(mongo_url, serverSelectionTimeoutMS=2000)
+    db = client[db_name]
+except Exception as e:
+    logging.warning(f"MongoDB connection failed: {e}. Some features may be unavailable.")
 
 # Create the main app without a prefix
 app = FastAPI()
@@ -42,8 +51,24 @@ class StatusCheckCreate(BaseModel):
 async def root():
     return {"message": "Hello World"}
 
+@api_router.get("/health")
+async def health_check():
+    """Health check endpoint that doesn't require MongoDB"""
+    return {
+        "status": "healthy",
+        "service": "Beat API",
+        "mongodb": "connected" if db is not None else "disconnected"
+    }
+
 @api_router.post("/status", response_model=StatusCheck)
 async def create_status_check(input: StatusCheckCreate):
+    if db is None:
+        return StatusCheck(
+            client_name=input.client_name,
+            id=str(uuid.uuid4()),
+            timestamp=datetime.now(timezone.utc)
+        )
+    
     status_dict = input.model_dump()
     status_obj = StatusCheck(**status_dict)
     
@@ -56,6 +81,10 @@ async def create_status_check(input: StatusCheckCreate):
 
 @api_router.get("/status", response_model=List[StatusCheck])
 async def get_status_checks():
+    if db is None:
+        # Return empty list if MongoDB is not available
+        return []
+    
     # Exclude MongoDB's _id field from the query results
     status_checks = await db.status_checks.find({}, {"_id": 0}).to_list(1000)
     
@@ -86,4 +115,5 @@ logger = logging.getLogger(__name__)
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
-    client.close()
+    if client is not None:
+        client.close()
