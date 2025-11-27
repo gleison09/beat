@@ -133,6 +133,7 @@ const DrumRudimentsApp = () => {
       generateSequence: 'Gerar Sequência',
       tempoControl: 'Controle de Tempo',
       autoBpm: 'BPM Automático',
+      accentMode: 'Acento',
       sequence: 'Sequência',
       cycle: 'Ciclo',
       slow: 'Lento',
