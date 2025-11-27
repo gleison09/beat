@@ -892,8 +892,9 @@ const DrumRudimentsApp = () => {
         const handPattern = currentNote.handPattern.split('-');
         const currentHand = handPattern[subdivisionIndex] || 'R';
         const isRest = currentNote.type === 'rest';
+        const isAccented = currentNote.accents && currentNote.accents.includes(subdivisionIndex);
 
-        playNoteSound(currentHand, isRest, subdivisionIndex);
+        playNoteSound(currentHand, isRest, subdivisionIndex, isAccented);
 
         // Schedule next subdivision only if still playing
         if (window.isPlaybackActive) {
