@@ -1433,9 +1433,9 @@ const DrumRudimentsApp = () => {
                       {note.type === 'eighth' && (
                         <div className="flex space-x-4">
                           {note.circles.map((circle, circleIndex) => (
-                            <div key={circle.id} className="flex flex-col items-center">
+                            <div key={circle.id} className="relative flex flex-col items-center pt-4">
                               {note.accents && note.accents.includes(circleIndex) && (
-                                <span className="text-lg font-bold text-red-700 dark:text-red-300 mb-[-4px]">&gt;</span>
+                                <span className="absolute top-0 left-1/2 transform -translate-x-1/2 text-xl font-bold text-red-700 dark:text-red-300">&gt;</span>
                               )}
                               <span className={`text-xs font-bold mb-1 ${
                                 note.handPattern.split('-')[circleIndex] === 'K' 
