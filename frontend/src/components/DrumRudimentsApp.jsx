@@ -1401,7 +1401,9 @@ const DrumRudimentsApp = () => {
               </div>
             ) : (
               <div className="space-y-4">
-                <div className="flex flex-wrap gap-4 p-4 bg-red-50 dark:bg-gray-800 rounded-lg min-h-20 items-center">
+                <div className={`flex flex-wrap gap-4 p-4 bg-red-50 dark:bg-gray-800 rounded-lg items-center transition-all duration-300 ${
+                  accentModeEnabled ? 'min-h-32 pt-8' : 'min-h-20'
+                }`}>
                   {sequence.map((note, index) => (
                     <div
                       key={note.id}
