@@ -749,9 +749,9 @@ const DrumRudimentsApp = () => {
   }, [clickEnabled, clickOnWholeNote, getAudioContext]);
 
   // Play audio for note - improved version with rest handling and kick drum
-  const playNoteSound = useCallback((hand = 'R', isRest = false, subdivisionIndex = 0) => {
-    // Always play click regardless of rest or not
-    playMetronomeClick(subdivisionIndex);
+  const playNoteSound = useCallback((hand = 'R', isRest = false, subdivisionIndex = 0, isAccented = false) => {
+    // Always play click regardless of rest or not, with accent flag
+    playMetronomeClick(subdivisionIndex, isAccented);
 
     // Don't play drum sound for rests, but still play click
     if (!soundEnabled || isRest) return;
