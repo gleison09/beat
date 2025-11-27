@@ -871,7 +871,8 @@ const DrumRudimentsApp = () => {
     const firstNote = sequence[0];
     const firstHand = firstNote.handPattern.split('-')[0] || 'R';
     const isFirstRest = firstNote.type === 'rest';
-    playNoteSound(firstHand, isFirstRest, 0);
+    const isFirstAccented = firstNote.accents && firstNote.accents.includes(0);
+    playNoteSound(firstHand, isFirstRest, 0, isFirstAccented);
 
     const playNextSubdivision = () => {
       // Check if playback should continue
