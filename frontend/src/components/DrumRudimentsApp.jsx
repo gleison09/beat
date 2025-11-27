@@ -1411,6 +1411,9 @@ const DrumRudimentsApp = () => {
                     >
                       {note.type === 'quarter' && (
                         <div className="flex flex-col items-center">
+                          {note.accents && note.accents.includes(0) && (
+                            <span className="text-lg font-bold text-red-700 dark:text-red-300 mb-[-4px]">&gt;</span>
+                          )}
                           <span className={`text-xs font-bold mb-1 ${
                             note.handPattern === 'K' 
                               ? 'text-orange-600 dark:text-orange-400' 
