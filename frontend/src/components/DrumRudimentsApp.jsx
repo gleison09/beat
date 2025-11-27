@@ -459,7 +459,7 @@ const DrumRudimentsApp = () => {
           accents: nextAccents
         };
       } else if (subdivisions === 4) {
-        // Sixteenth note: 1 -> 2 -> 3 -> 4 -> 1,2 -> 2,3 -> 3,4 -> 1,2,3 -> 2,3,4 -> 1,2,3,4 -> none
+        // Sixteenth note: 1 -> 2 -> 3 -> 4 -> 1,2 -> 2,3 -> 3,4 -> 1,3 -> 2,4 -> 1,2,3 -> 2,3,4 -> 1,2,3,4 -> none
         let nextAccents = [];
         const accentsStr = currentAccents.sort((a,b) => a-b).join(',');
         
@@ -478,6 +478,10 @@ const DrumRudimentsApp = () => {
         } else if (accentsStr === '1,2') {
           nextAccents = [2, 3];
         } else if (accentsStr === '2,3') {
+          nextAccents = [0, 2];
+        } else if (accentsStr === '0,2') {
+          nextAccents = [1, 3];
+        } else if (accentsStr === '1,3') {
           nextAccents = [0, 1, 2];
         } else if (accentsStr === '0,1,2') {
           nextAccents = [1, 2, 3];
