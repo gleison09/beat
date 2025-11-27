@@ -1512,17 +1512,9 @@ const DrumRudimentsApp = () => {
                             {note.circles.map((circle, circleIndex) => (
                               <div key={circle.id} className="relative flex flex-col items-center pt-6">
                                 {note.accents && note.accents.includes(circleIndex) && (
-                                  <span className={`absolute top-[-4px] left-1/2 transform -translate-x-1/2 text-xl font-bold ${
-                                    note.handPattern.split('-')[circleIndex] === 'K' 
-                                      ? 'text-orange-600 dark:text-orange-400' 
-                                      : 'text-red-600 dark:text-red-400'
-                                  }`}>&gt;</span>
+                                  <span className="absolute top-[-4px] left-1/2 transform -translate-x-1/2 text-xl font-bold text-red-600 dark:text-red-400">&gt;</span>
                                 )}
-                                <span className={`text-xs font-bold mb-1 ${
-                                  note.handPattern.split('-')[circleIndex] === 'K' 
-                                    ? 'text-orange-600 dark:text-orange-400' 
-                                    : 'text-red-600 dark:text-red-400'
-                                }`}>
+                                <span className="text-xs font-bold mb-1 text-red-600 dark:text-red-400">
                                   {translateHandPattern(note.handPattern.split('-')[circleIndex])}
                                 </span>
                                 <span
