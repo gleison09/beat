@@ -1419,17 +1419,9 @@ const DrumRudimentsApp = () => {
                       {note.type === 'quarter' && (
                         <div className="relative flex flex-col items-center pt-6">
                           {note.accents && note.accents.includes(0) && (
-                            <span className={`absolute top-[-4px] left-1/2 transform -translate-x-1/2 text-xl font-bold ${
-                              note.handPattern === 'K' 
-                                ? 'text-orange-600 dark:text-orange-400' 
-                                : 'text-red-600 dark:text-red-400'
-                            }`}>&gt;</span>
+                            <span className="absolute top-[-4px] left-1/2 transform -translate-x-1/2 text-xl font-bold text-red-600 dark:text-red-400">&gt;</span>
                           )}
-                          <span className={`text-xs font-bold mb-1 ${
-                            note.handPattern === 'K' 
-                              ? 'text-orange-600 dark:text-orange-400' 
-                              : 'text-red-600 dark:text-red-400'
-                          }`}>
+                          <span className="text-xs font-bold mb-1 text-red-600 dark:text-red-400">
                             {translateHandPattern(note.handPattern)}
                           </span>
                           <span className={`text-4xl transition-all duration-150 ${
