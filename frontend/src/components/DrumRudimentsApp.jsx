@@ -415,22 +415,93 @@ const DrumRudimentsApp = () => {
           ...note,
           accents: currentAccents.length === 0 ? [0] : []
         };
-      } else {
-        // Multiple subdivisions: cycle through accent positions
-        // Find next accent state
+      } else if (subdivisions === 2) {
+        // Eighth note: simple cycling
         let nextAccents = [...currentAccents];
         
         if (currentAccents.length === 0) {
-          // No accents -> accent on first subdivision
+          nextAccents = [0];
+        } else if (currentAccents.length === 1 && currentAccents[0] === 0) {
+          nextAccents = [1];
+        } else if (currentAccents.length === 1 && currentAccents[0] === 1) {
+          nextAccents = [0, 1];
+        } else {
+          nextAccents = [];
+        }
+        
+        return {
+          ...note,
+          accents: nextAccents
+        };
+      } else if (subdivisions === 3) {
+        // Triplet note: 1 -> 2 -> 3 -> 1,2 -> 2,3 -> 1,2,3 -> none
+        let nextAccents = [];
+        const accentsStr = currentAccents.sort((a,b) => a-b).join(',');
+        
+        if (accentsStr === '') {
+          nextAccents = [0];
+        } else if (accentsStr === '0') {
+          nextAccents = [1];
+        } else if (accentsStr === '1') {
+          nextAccents = [2];
+        } else if (accentsStr === '2') {
+          nextAccents = [0, 1];
+        } else if (accentsStr === '0,1') {
+          nextAccents = [1, 2];
+        } else if (accentsStr === '1,2') {
+          nextAccents = [0, 1, 2];
+        } else if (accentsStr === '0,1,2') {
+          nextAccents = [];
+        }
+        
+        return {
+          ...note,
+          accents: nextAccents
+        };
+      } else if (subdivisions === 4) {
+        // Sixteenth note: 1 -> 2 -> 3 -> 4 -> 1,2 -> 2,3 -> 3,4 -> 1,2,3 -> 2,3,4 -> 1,2,3,4 -> none
+        let nextAccents = [];
+        const accentsStr = currentAccents.sort((a,b) => a-b).join(',');
+        
+        if (accentsStr === '') {
+          nextAccents = [0];
+        } else if (accentsStr === '0') {
+          nextAccents = [1];
+        } else if (accentsStr === '1') {
+          nextAccents = [2];
+        } else if (accentsStr === '2') {
+          nextAccents = [3];
+        } else if (accentsStr === '3') {
+          nextAccents = [0, 1];
+        } else if (accentsStr === '0,1') {
+          nextAccents = [1, 2];
+        } else if (accentsStr === '1,2') {
+          nextAccents = [2, 3];
+        } else if (accentsStr === '2,3') {
+          nextAccents = [0, 1, 2];
+        } else if (accentsStr === '0,1,2') {
+          nextAccents = [1, 2, 3];
+        } else if (accentsStr === '1,2,3') {
+          nextAccents = [0, 1, 2, 3];
+        } else if (accentsStr === '0,1,2,3') {
+          nextAccents = [];
+        }
+        
+        return {
+          ...note,
+          accents: nextAccents
+        };
+      } else {
+        // Thirty-second or other: keep original logic
+        let nextAccents = [...currentAccents];
+        
+        if (currentAccents.length === 0) {
           nextAccents = [0];
         } else if (currentAccents.length === 1 && currentAccents[0] < subdivisions - 1) {
-          // Single accent not on last -> move to next
           nextAccents = [currentAccents[0] + 1];
         } else if (currentAccents.length === 1 && currentAccents[0] === subdivisions - 1) {
-          // Single accent on last -> accent on all
           nextAccents = Array.from({ length: subdivisions }, (_, i) => i);
         } else {
-          // All accented -> remove all accents
           nextAccents = [];
         }
         
