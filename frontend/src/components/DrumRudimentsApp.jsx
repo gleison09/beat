@@ -1412,9 +1412,9 @@ const DrumRudimentsApp = () => {
                       title={`Click to remove ${note.name}`}
                     >
                       {note.type === 'quarter' && (
-                        <div className="flex flex-col items-center">
+                        <div className="relative flex flex-col items-center pt-4">
                           {note.accents && note.accents.includes(0) && (
-                            <span className="text-lg font-bold text-red-700 dark:text-red-300 mb-[-4px]">&gt;</span>
+                            <span className="absolute top-0 left-1/2 transform -translate-x-1/2 text-xl font-bold text-red-700 dark:text-red-300">&gt;</span>
                           )}
                           <span className={`text-xs font-bold mb-1 ${
                             note.handPattern === 'K' 
