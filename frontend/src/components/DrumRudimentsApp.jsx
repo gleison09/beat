@@ -711,7 +711,7 @@ const DrumRudimentsApp = () => {
   }, []);
 
   // Play metronome click sound
-  const playMetronomeClick = useCallback((subdivisionIndex = 0) => {
+  const playMetronomeClick = useCallback((subdivisionIndex = 0, isAccented = false) => {
     // If click on whole note is enabled, only play on first subdivision
     if (clickOnWholeNote && subdivisionIndex !== 0) {
       return;
@@ -728,14 +728,16 @@ const DrumRudimentsApp = () => {
       oscillator.connect(gain);
       gain.connect(audioContext.destination);
 
-      // High-pitched click
-      oscillator.frequency.setValueAtTime(1200, audioContext.currentTime);
+      // Higher-pitched click for accented notes (1800 Hz vs 1200 Hz)
+      const frequency = isAccented ? 1800 : 1200;
+      oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
       oscillator.type = 'square';
 
-      // Sharp click envelope
+      // Sharp click envelope - louder for accented notes
       const now = audioContext.currentTime;
+      const volume = isAccented ? 0.25 : 0.15;
       gain.gain.setValueAtTime(0, now);
-      gain.gain.linearRampToValueAtTime(0.15, now + 0.001);
+      gain.gain.linearRampToValueAtTime(volume, now + 0.001);
       gain.gain.exponentialRampToValueAtTime(0.001, now + 0.03);
 
       oscillator.start(now);
