@@ -1460,6 +1460,9 @@ const DrumRudimentsApp = () => {
                           <div className="flex space-x-4">
                             {note.circles.map((circle, circleIndex) => (
                               <div key={circle.id} className="flex flex-col items-center">
+                                {note.accents && note.accents.includes(circleIndex) && (
+                                  <span className="text-lg font-bold text-red-700 dark:text-red-300 mb-[-4px]">&gt;</span>
+                                )}
                                 <span className={`text-xs font-bold mb-1 ${
                                   note.handPattern.split('-')[circleIndex] === 'K' 
                                     ? 'text-orange-600 dark:text-orange-400' 
