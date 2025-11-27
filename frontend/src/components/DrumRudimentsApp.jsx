@@ -390,9 +390,56 @@ const DrumRudimentsApp = () => {
     setSequence(prev => [...prev, newNote]);
   };
 
-  // Remove note from sequence
+  // Remove note from sequence or toggle accents
   const removeNote = (noteId) => {
-    setSequence(prev => prev.filter(note => note.id !== noteId));
+    if (accentModeEnabled) {
+      // In accent mode, toggle accents instead of removing
+      toggleNoteAccent(noteId);
+    } else {
+      // Normal mode: remove the note
+      setSequence(prev => prev.filter(note => note.id !== noteId));
+    }
+  };
+  
+  // Toggle accent on a note
+  const toggleNoteAccent = (noteId) => {
+    setSequence(prev => prev.map(note => {
+      if (note.id !== noteId) return note;
+      
+      const subdivisions = note.subdivisions || 1;
+      const currentAccents = note.accents || [];
+      
+      if (subdivisions === 1) {
+        // Quarter note: toggle single accent
+        return {
+          ...note,
+          accents: currentAccents.length === 0 ? [0] : []
+        };
+      } else {
+        // Multiple subdivisions: cycle through accent positions
+        // Find next accent state
+        let nextAccents = [...currentAccents];
+        
+        if (currentAccents.length === 0) {
+          // No accents -> accent on first subdivision
+          nextAccents = [0];
+        } else if (currentAccents.length === 1 && currentAccents[0] < subdivisions - 1) {
+          // Single accent not on last -> move to next
+          nextAccents = [currentAccents[0] + 1];
+        } else if (currentAccents.length === 1 && currentAccents[0] === subdivisions - 1) {
+          // Single accent on last -> accent on all
+          nextAccents = Array.from({ length: subdivisions }, (_, i) => i);
+        } else {
+          // All accented -> remove all accents
+          nextAccents = [];
+        }
+        
+        return {
+          ...note,
+          accents: nextAccents
+        };
+      }
+    }));
   };
 
   // Hand pattern cycling functions
