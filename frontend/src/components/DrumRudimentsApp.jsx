@@ -36,6 +36,9 @@ const DrumRudimentsApp = () => {
   const [currentCycleCount, setCurrentCycleCount] = useState(0);
   const [sequenceCompletions, setSequenceCompletions] = useState(0);
   
+  // Accent mode state
+  const [accentModeEnabled, setAccentModeEnabled] = useState(false);
+  
   const [handPatterns, setHandPatterns] = useState({
     quarter: 'R',
     eighth: 'R-R',
