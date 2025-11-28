@@ -1355,16 +1355,6 @@ const DrumRudimentsApp = () => {
                 <div className="flex items-center space-x-4">
                   <div className="flex items-center space-x-2">
                     <div className="text-sm text-center leading-tight font-bold">
-                      <div>{t.accentMode}</div>
-                    </div>
-                    <Switch
-                      checked={accentModeEnabled}
-                      onCheckedChange={setAccentModeEnabled}
-                      className="data-[state=checked]:bg-red-600"
-                    />
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <div className="text-sm text-center leading-tight font-bold">
                       <div>{t.autoBpm.split(' ')[0]}</div>
                       <div>{t.autoBpm.split(' ')[1]}</div>
                     </div>
