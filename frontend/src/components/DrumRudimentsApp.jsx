@@ -121,6 +121,7 @@ const DrumRudimentsApp = () => {
       enableSound: 'Ativar Som',
       kickDrum: 'Ativar Bumbo no Padrão',
       randomRest: 'Ativar Pausas em Sequência Aleatória',
+      randomAccent: 'Ativar Acento em Sequência Aleatória',
       enableAccent: 'Ativar Acento nas Notas',
       bpmIncreaseTen: 'Ativar Auto-incremento BPM em 10',
       numberOfSequences: 'Sequências no Auto-BPM',
