@@ -59,6 +59,7 @@ const DrumRudimentsApp = () => {
       enableSound: 'Enable Sound',
       kickDrum: 'Enable Kick Drum in Pattern',
       randomRest: 'Enable Rests in Random Sequence',
+      randomAccent: 'Enable Accent in Random Sequence',
       enableAccent: 'Enable Accent on Notes',
       bpmIncreaseTen: 'Enable Auto-increase BPM by 10',
       numberOfSequences: 'Sequences in Auto-BPM',
