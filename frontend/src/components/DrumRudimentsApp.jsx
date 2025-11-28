@@ -148,6 +148,7 @@ const DrumRudimentsApp = () => {
       currentBpm: 'BPM Atual',
       currentSequence: 'Sequência Atual',
       clearAll: 'Limpar Tudo',
+      resetTime: 'Resetar Tempo',
       noSequence: 'Ainda não há sequência',
       addNotesStart: 'Adicione notas para começar a praticar!',
       howToUse: 'Como usar:',
