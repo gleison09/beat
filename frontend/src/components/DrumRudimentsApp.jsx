@@ -1158,7 +1158,7 @@ const DrumRudimentsApp = () => {
                     <Switch
                       checked={soundEnabled}
                       onCheckedChange={setSoundEnabled}
-                      className="data-[state=checked]:bg-green-600"
+                      className="data-[state=checked]:bg-blue-600"
                     />
                   </div>
                 </div>
@@ -1170,7 +1170,7 @@ const DrumRudimentsApp = () => {
                     <Switch
                       checked={drumKickEnabled}
                       onCheckedChange={setDrumKickEnabled}
-                      className="data-[state=checked]:bg-orange-600"
+                      className="data-[state=checked]:bg-blue-600"
                     />
                   </div>
                 </div>
@@ -1182,7 +1182,7 @@ const DrumRudimentsApp = () => {
                     <Switch
                       checked={includeRest}
                       onCheckedChange={setIncludeRest}
-                      className="data-[state=checked]:bg-purple-600"
+                      className="data-[state=checked]:bg-blue-600"
                     />
                   </div>
                 </div>
@@ -1194,7 +1194,7 @@ const DrumRudimentsApp = () => {
                     <Switch
                       checked={accentModeEnabled}
                       onCheckedChange={setAccentModeEnabled}
-                      className="data-[state=checked]:bg-red-600"
+                      className="data-[state=checked]:bg-blue-600"
                     />
                   </div>
                 </div>
@@ -1206,7 +1206,7 @@ const DrumRudimentsApp = () => {
                     <Switch
                       checked={bpmIncreaseTen}
                       onCheckedChange={setBpmIncreaseTen}
-                      className="data-[state=checked]:bg-indigo-600"
+                      className="data-[state=checked]:bg-blue-600"
                     />
                   </div>
                 </div>
