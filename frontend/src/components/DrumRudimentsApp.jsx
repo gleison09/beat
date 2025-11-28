@@ -659,7 +659,7 @@ const DrumRudimentsApp = () => {
 
     // Add new sequence to existing sequence (don't replace)
     setSequence(prev => [...prev, ...newSequence]);
-  }, [includeRest]);
+  }, [includeRest, includeRandomAccent]);
 
   const cycleHandPattern = (noteType) => {
     if (noteType === 'rest') return; // Don't cycle hand patterns for rests
