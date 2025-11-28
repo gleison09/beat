@@ -4,7 +4,7 @@ import { Card, CardHeader, CardTitle, CardContent } from './ui/card';
 import { Slider } from './ui/slider';
 import { Switch } from './ui/switch';
 import { Label } from './ui/label';
-import { Play, Square, Moon, Sun, Trash2, Settings, Download, Upload } from 'lucide-react';
+import { Play, Square, Moon, Sun, Trash2, Settings, Download, Upload, RotateCcw } from 'lucide-react';
 // Toast imports removed - no popup messages
 
 const DrumRudimentsApp = () => {
