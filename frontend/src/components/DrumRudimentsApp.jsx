@@ -1187,6 +1187,18 @@ const DrumRudimentsApp = () => {
                   </div>
                 </div>
                 
+                {/* Enable Accent on Notes */}
+                <div className="px-4 py-3 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors border-b-2 border-gray-300 dark:border-gray-600">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-semibold text-gray-800 dark:text-gray-200">{t.enableAccent}</span>
+                    <Switch
+                      checked={accentModeEnabled}
+                      onCheckedChange={setAccentModeEnabled}
+                      className="data-[state=checked]:bg-red-600"
+                    />
+                  </div>
+                </div>
+                
                 {/* BPM Increase by 10 */}
                 <div className="px-4 py-3 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
                   <div className="flex items-center justify-between">
