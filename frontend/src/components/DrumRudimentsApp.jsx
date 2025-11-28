@@ -671,6 +671,12 @@ const DrumRudimentsApp = () => {
     }
   };
 
+  // Reset timer only
+  const resetTimer = () => {
+    setTimerSeconds(0);
+    setTimerActive(false);
+  };
+
   // Save sequence to file
   const saveSequence = () => {
     if (sequence.length === 0) {
