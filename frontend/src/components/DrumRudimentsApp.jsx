@@ -1191,12 +1191,24 @@ const DrumRudimentsApp = () => {
                 </div>
                 
                 {/* Random Rest */}
-                <div className="px-4 py-3 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors border-b-2 border-gray-300 dark:border-gray-600">
+                <div className="px-4 py-3 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-semibold text-gray-800 dark:text-gray-200">{t.randomRest}</span>
                     <Switch
                       checked={includeRest}
                       onCheckedChange={setIncludeRest}
+                      className="data-[state=checked]:bg-blue-600"
+                    />
+                  </div>
+                </div>
+                
+                {/* Random Accent - no border (same group as Random Rest) */}
+                <div className="px-4 py-3 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors border-b-2 border-gray-300 dark:border-gray-600">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-semibold text-gray-800 dark:text-gray-200">{t.randomAccent}</span>
+                    <Switch
+                      checked={includeRandomAccent}
+                      onCheckedChange={setIncludeRandomAccent}
                       className="data-[state=checked]:bg-blue-600"
                     />
                   </div>
