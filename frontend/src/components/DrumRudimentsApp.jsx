@@ -637,6 +637,18 @@ const DrumRudimentsApp = () => {
         handPattern: generateRandomHandPattern(noteStems),
         ...noteTypes[randomNoteType]
       };
+      
+      // Add random accents if includeRandomAccent is enabled
+      if (includeRandomAccent && randomNoteType !== 'rest') {
+        const accents = [];
+        // 30% chance for each subdivision to have an accent
+        for (let i = 0; i < noteStems; i++) {
+          if (Math.random() < 0.3) {
+            accents.push(i);
+          }
+        }
+        newNote.accents = accents;
+      }
 
       newSequence.push(newNote);
       totalStems += noteStems;
