@@ -674,7 +674,11 @@ const DrumRudimentsApp = () => {
   // Reset timer only
   const resetTimer = () => {
     setTimerSeconds(0);
-    setTimerActive(false);
+    // If playing, keep timer active; if stopped, deactivate timer
+    if (!isPlaying) {
+      setTimerActive(false);
+    }
+    // If isPlaying is true, timerActive stays true and continues counting
   };
 
   // Save sequence to file
