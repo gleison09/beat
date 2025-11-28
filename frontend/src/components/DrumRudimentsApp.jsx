@@ -1468,8 +1468,17 @@ const DrumRudimentsApp = () => {
               )}
             </div>
             
-            {/* Right Column: Clear All Button */}
-            <div className="flex justify-end">
+            {/* Right Column: Reset Time and Clear All Buttons */}
+            <div className="flex justify-end gap-2">
+              <Button
+                onClick={resetTimer}
+                variant="outline"
+                size="sm"
+                className="border-2 border-blue-400 bg-gradient-to-b from-blue-50 to-blue-100 hover:from-blue-100 hover:to-blue-200 text-blue-600 dark:from-gray-700 dark:to-gray-800 dark:hover:from-gray-600 dark:hover:to-gray-700 dark:text-blue-400 shadow-md hover:shadow-lg active:shadow-sm active:translate-y-0.5 transition-all duration-200"
+              >
+                <RotateCcw className="h-4 w-4 mr-2" />
+                {t.resetTime}
+              </Button>
               {sequence.length > 0 && (
                 <Button
                   onClick={clearSequence}
