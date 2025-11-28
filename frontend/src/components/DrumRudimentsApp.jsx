@@ -21,6 +21,7 @@ const DrumRudimentsApp = () => {
   const [clickEnabled, setClickEnabled] = useState(true);
   const [clickOnWholeNote, setClickOnWholeNote] = useState(false);
   const [includeRest, setIncludeRest] = useState(false);
+  const [includeRandomAccent, setIncludeRandomAccent] = useState(false);
   const [drumKickEnabled, setDrumKickEnabled] = useState(false);
   const [bpmIncreaseTen, setBpmIncreaseTen] = useState(false); // BPM increase by 10 or 5
   const [settingsMenuOpen, setSettingsMenuOpen] = useState(false);
