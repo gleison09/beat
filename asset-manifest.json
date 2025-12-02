@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/beat/static/css/main.a0f93450.css",
+    "main.js": "/beat/static/js/main.c28946f6.js",
+    "index.html": "/beat/index.html",
+    "main.a0f93450.css.map": "/beat/static/css/main.a0f93450.css.map",
+    "main.c28946f6.js.map": "/beat/static/js/main.c28946f6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a0f93450.css",
+    "static/js/main.c28946f6.js"
+  ]
+}
